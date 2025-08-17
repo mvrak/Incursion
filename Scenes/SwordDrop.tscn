@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=4 uid="uid://b8em8r1sl12ky"]
+
+[ext_resource type="Script" path="res://Scripts/SwordDrop.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="SwordDrop" type="Area2D"]
+script = ExtResource("1_0")
+
+[node name="Sprite" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.8, 0.6, 0.2, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 20.0
+offset_right = 25.0
+offset_bottom = 35.0
+text = "SWORD"
+label_settings = SubResource("LabelSettings_1")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 12
+font_color = Color(0.2, 0.2, 0.2, 1)

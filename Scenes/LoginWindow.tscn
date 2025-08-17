@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc4rliao6ky8t"]
+
+[ext_resource type="Texture2D" uid="uid://b3ci7k5ln7b3n" path="res://Assets/title.background.jpg" id="1_r7hou"]
+
+[sub_resource type="Theme" id="Theme_5eqve"]
+
+[sub_resource type="SystemFont" id="SystemFont_k271e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r7hou"]
+font = SubResource("SystemFont_k271e")
+font_size = 32
+shadow_size = 20
+shadow_offset = Vector2(9, 9)
+
+[node name="LoginWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5eqve")
+
+[node name="Incursion" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 661.0
+text = "Incursion"
+label_settings = SubResource("LabelSettings_r7hou")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Login with Privy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 372.0
+offset_right = 708.0
+offset_bottom = 403.0
+text = "Login with Privy"
+
+[node name="Title_background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(672, 451)
+scale = Vector2(2, 2)
+texture = ExtResource("1_r7hou")

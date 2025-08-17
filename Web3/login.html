@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incursion - Privy Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .game-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .login-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .wallet-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .wallet-address {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        
+        .status {
+            margin-top: 15px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .demo-note {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255, 193, 7, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="game-title">INCURSION</h1>
+        <p class="subtitle">Web3 RPG Adventure</p>
+        
+        <div id="login-section">
+            <p>Connect your wallet to begin your adventure</p>
+            <button class="login-button" onclick="connectWallet()">Connect with Privy</button>
+            <button class="login-button" onclick="demoLogin()">Demo Login</button>
+        </div>
+        
+        <div id="wallet-info" class="wallet-info">
+            <h3>Wallet Connected!</h3>
+            <p>Address:</p>
+            <div class="wallet-address" id="wallet-address"></div>
+            <p class="status">Redirecting to game...</p>
+        </div>
+        
+        <div class="demo-note">
+            <strong>Note:</strong> This is a demo login page. In production, you would integrate with Privy's actual authentication system.
+        </div>
+    </div>
+
+    <script>
+        function connectWallet() {
+            // Simulate Privy wallet connection
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('wallet-info').style.display = 'block';
+            
+            // Generate a demo wallet address
+            const demoAddress = '0x' + Math.random().toString(16).substr(2, 40);
+            document.getElementById('wallet-address').textContent = demoAddress;
+            
+            // Simulate redirect to game
+            setTimeout(() => {
+                // In a real implementation, this would communicate with Godot
+                console.log('Wallet connected:', demoAddress);
+                console.log('Redirecting to game...');
+                
+                // Send message to parent (Godot) if in iframe
+                if (window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'login_success',
+                        wallet_address: demoAddress
+                    }, '*');
+                }
+            }, 2000);
+        }
+        
+        function demoLogin() {
+            // Quick demo login with predefined address
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('wallet-info').style.display = 'block';
+            
+            const demoAddress = '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
+            document.getElementById('wallet-address').textContent = demoAddress;
+            
+            setTimeout(() => {
+                console.log('Demo wallet connected:', demoAddress);
+                console.log('Redirecting to game...');
+                
+                if (window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'login_success',
+                        wallet_address: demoAddress
+                    }, '*');
+                }
+            }, 1500);
+        }
+        
+        // Listen for messages from parent (Godot)
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'request_login') {
+                console.log('Login requested by Godot');
+            }
+        });
+    </script>
+</body>
+</html>
