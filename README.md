@@ -1,4 +1,4 @@
-# Incursion - Web3 RPG Game
+# Incursion - Web3 Roguelite
 
 A Godot-based RPG game that demonstrates Privy login integration and Web3 NFT functionality.
 
